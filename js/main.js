@@ -4,7 +4,7 @@ function CashRegister(){
       form: $("#entry"),
       entries: $("#entries"),
       total: $("#total"),
-      input: $("newEntry"),
+      input: $("#newEntry"),
   }
 }
 CashRegister.prototype.calculateTotal = function(){
@@ -14,24 +14,6 @@ CashRegister.prototype.calculateTotal = function(){
   }
   return total;
 }
-var register = new CashRegister();
-  //console.log(register.input);
-  //this.register.entries.push(this.register.input)
-register.els.form.on("submit", function(event){
-    event.preventDefault();
-
-      var newNumber = (parseFloat(register.els.input.val()));
-      console.log(newNumber);
-      register.els.input.val("");
-
-      register.entries.push(newNumber);
-
-      register.displayEntry(newNumber);
-
-      var newTotal = register.calculateTotal()
-      register.els.total.html("$"+newNumber)
-});
-
 CashRegister.prototype.displayEntry = function(entry){
   var tr = $("<tr></tr>");
   var td = $("<td></td>");
@@ -40,6 +22,23 @@ CashRegister.prototype.displayEntry = function(entry){
   tr.append(td2)
   this.els.entries.append(tr)
 }
+
+var register = new CashRegister();
+
+register.els.form.on("submit", function(event){
+    event.preventDefault();
+
+var newNumber = parseFloat(register.els.input.val());
+register.els.input.val("");
+
+register.entries.push(newNumber);
+
+register.displayEntry(newNumber);
+
+var newTotal = register.calculateTotal()
+      register.els.total.html("$"+newNumber)
+});
+
 
 
  //you can put this "register.els.form.on("submit, function etc --- ) anyplace in your code as long as it is after your defined "register" construct. You can do this instead of $("#newEntry") because we have already "queries the DOM" when we defined "els" at the top
