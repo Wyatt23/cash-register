@@ -1,3 +1,4 @@
+
 function CashRegister(){
   this.entries= [];
   this.els = {
@@ -17,7 +18,7 @@ CashRegister.prototype.calculateTotal = function(){
 CashRegister.prototype.displayEntry = function(entry){
   var tr = $("<tr></tr>");
   var td = $("<td></td>");
-  var td2 = $("<td>"+entry+"</td>");
+  var td2 = $("<td>"+ entry + "</td>");
   tr.append(td)
   tr.append(td2)
   this.els.entries.append(tr)
@@ -27,16 +28,12 @@ var register = new CashRegister();
 
 register.els.form.on("submit", function(event){
     event.preventDefault();
-
-var newNumber = parseFloat(register.els.input.val());
-register.els.input.val("");
-
-register.entries.push(newNumber);
-
-register.displayEntry(newNumber);
-
-var newTotal = register.calculateTotal()
-      register.els.total.html("$"+newNumber)
+    var newNumber = parseFloat(register.els.input.val())//gets the user input and rounds it to a decimal
+    register.els.input.val("");//sets it back  to nothing - clears input feild
+    register.entries.push(newNumber)//adds the user input to the entries array at the top.
+    register.displayEntry(newNumber);//create a new table row.? really?
+    var newTotal = register.calculateTotal()
+      register.els.total.html("$"+ newTotal)
 });
 
 
