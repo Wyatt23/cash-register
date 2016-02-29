@@ -7,7 +7,7 @@ function CashRegister(){
       input: $("newEntry"),
   }
 }
-CashRegister.prototype.caclulateTotal = function(){
+CashRegister.prototype.calculateTotal = function(){
   var total = 0;
   for (var i = 0; i < this.entries.length; i++){
     total += this.entries[i]; //this will add the total to the latest "this.entry"
